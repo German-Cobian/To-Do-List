@@ -26,7 +26,7 @@ const activitiesList = () => {
   // Section where activities are inputed
   const addActivity = () => {
     const li = document.createElement('li');
-    li.id = 'new-activities'; 
+    li.id = 'new-activities';
 
     const input = document.createElement('input');
     input.type = 'text';
@@ -36,7 +36,7 @@ const activitiesList = () => {
     li.appendChild(input);
 
     return li;
-  }
+  };
 
   // Section that displays activities
   const renderList = (activity) => {
