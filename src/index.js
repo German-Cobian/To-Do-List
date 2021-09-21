@@ -7,7 +7,6 @@ const activities = [
 ];
 
 const activitiesList = () => {
-
   // Section with heading and refresh
   const heading = () => {
     const li = document.createElement('li');
@@ -24,16 +23,15 @@ const activitiesList = () => {
     return li;
   };
 
-   // Section where activities are inputed
+  // Section where activities are inputed
   const addActivity = () => {
     const li = document.createElement('li');
     li.id = 'new-activities'; 
-  
+
     const input = document.createElement('input');
     input.type = 'text';
     input.placeholder = 'Add to your list...';
     input.id = 'list-item';
-    
 
     li.appendChild(input);
 
@@ -73,15 +71,16 @@ const activitiesList = () => {
     li.id = 'clear';
 
     return li;
-  }
+  };
+
   const ul = document.querySelector('ul');
 
   ul.appendChild(heading());
   ul.appendChild(addActivity());
-  
+
   activities.sort((a, b) => ((a.index > b.index) ? 1 : -1));
   activities.forEach((activity) => ul.appendChild(renderList(activity)));
-  
+
   ul.appendChild(clearCompleted());
 };
 
