@@ -1,10 +1,5 @@
 import './style.css';
-
-const activities = [
-  { description: 'Un-clog the toilet', completed: false, index: 2 },
-  { description: 'Complain to the neighbor about his brats', completed: false, index: 3 },
-  { description: 'De-flea the dog', completed: true, index: 1 },
-];
+import { activities, activityReload } from './functionalities';
 
 const activitiesList = () => {
   // Section with heading and refresh
@@ -45,10 +40,13 @@ const activitiesList = () => {
     const div = document.createElement('div');
 
     const input = document.createElement('input');
+    input.classList.add('completed'); // ft-2
     input.type = 'checkbox';
     input.name = 'completed';
+    input.addEventListener('click', () => activityReload(activity, input.checked)); // ft-2
 
     const p = document.createElement('p');
+    p.classList.add('description'); // ft-2
     p.textContent = activity.description;
 
     div.appendChild(input);
