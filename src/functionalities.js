@@ -26,7 +26,7 @@ const activityReload = (activity, check) => {
 };
 
 export {
-  activities, emptyList, inputActivity, activityReload
+  activities, emptyList, inputActivity, archiveActivities, activityReload,
 };
 
 /* eslint-enable import/no-mutable-exports */
