@@ -21,9 +21,9 @@ const archiveActivities = () => {
 const loadActivitiesList = () => {
   let loadActivities;
   if (loadActivities === undefined) {
-    loadActivities = JSON.parse(localStorage.getItem('activities'));;
+    loadActivities = JSON.parse(localStorage.getItem('activities'));
   }
-  activities = JSON.parse(localStorage.getItem('activities'));;
+  activities = JSON.parse(localStorage.getItem('activities'));
   return activities;
 };
 
