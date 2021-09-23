@@ -1,12 +1,9 @@
 import './style.css';
-
-const activities = [
-  { description: 'Un-clog the toilet', completed: false, index: 2 },
-  { description: 'Complain to the neighbor about his brats', completed: false, index: 3 },
-  { description: 'De-flea the dog', completed: true, index: 1 },
-];
+import { activities, loadActivitiesList, activityReload } from './functionalities';
 
 const activitiesList = () => {
+  loadActivitiesList();
+
   // Section with heading and refresh
   const heading = () => {
     const li = document.createElement('li');
@@ -45,10 +42,14 @@ const activitiesList = () => {
     const div = document.createElement('div');
 
     const input = document.createElement('input');
+    input.classList.add('completed');
     input.type = 'checkbox';
     input.name = 'completed';
+    input.checked = activity.completed;
+    input.addEventListener('click', () => activityReload(activity, input.checked));
 
     const p = document.createElement('p');
+    p.classList.add('description');
     p.textContent = activity.description;
 
     div.appendChild(input);
