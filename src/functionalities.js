@@ -19,11 +19,11 @@ const archiveActivities = () => {
 };
 
 const loadActivitiesList = () => {
-  let loadActivities = JSON.parse(localStorage.getItem('activities'));
+  let loadActivities;
   if (loadActivities === undefined) {
-    loadActivities = activities;
+    loadActivities = JSON.parse(localStorage.getItem('activities'));;
   }
-  activities = loadActivities;
+  activities = JSON.parse(localStorage.getItem('activities'));;
   return activities;
 };
 
