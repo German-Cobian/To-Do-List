@@ -1,8 +1,8 @@
 import './style.css';
-import { activities, loadActivitiesList, activityReload } from './functionalities';
+import { activities, loadArchivedActivities, updateCheckboxStatus } from './functionalities';
 
 const activitiesList = () => {
-  loadActivitiesList();
+  loadArchivedActivities();
 
   // Section with heading and refresh
   const heading = () => {
@@ -46,7 +46,7 @@ const activitiesList = () => {
     input.type = 'checkbox';
     input.name = 'completed';
     input.checked = activity.completed;
-    input.addEventListener('click', () => activityReload(activity, input.checked));
+    input.addEventListener('click', () => updateCheckboxStatus(activity, input.checked));
 
     const p = document.createElement('p');
     p.classList.add('description');
