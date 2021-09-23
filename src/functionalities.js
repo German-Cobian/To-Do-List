@@ -1,13 +1,9 @@
 /* eslint-disable import/no-mutable-exports */
 
-let activities = [
-  { description: 'Un-clog the toilet', completed: false, index: 1 },
-  { description: 'Complain to the neighbor about his brats', completed: false, index: 3 },
-  { description: 'De-flea the dog', completed: false, index: 3 },
-];
+let activities = [];
 
 const inputActivity = (description, completed, index) => {
-  activities.push({ description, completed, index });
+  activities.push({ description, completed, index: parseInt(index, 10) });
 };
 
 const emptyList = () => {
@@ -19,23 +15,69 @@ const archiveActivities = () => {
 };
 
 const loadActivitiesList = () => {
-  let loadActivities;
-  if (loadActivities === undefined) {
-    loadActivities = JSON.parse(localStorage.getItem('activities'));
+  let loadActivities = JSON.parse(localStorage.getItem('activities'));
+  if (loadActivities == null) {
+    loadActivities = [];
   }
-  activities = JSON.parse(localStorage.getItem('activities'));
+  activities = loadActivities;
   return activities;
 };
 
-const activityReload = (activity, check) => {
-  const specificActivity = activities.find((act) => act.description === activity.description);
+const assignIndexToActivity = (description) => {
+  let index = 0;
 
-  specificActivity.completed = check;
+  if (activities.length > 0) {
+    index = activities[activities.length - 1].index + 1;
+  }
+
+  inputActivity(description, false, index);
   archiveActivities();
 };
 
+const updateCheckboxStatus = (index, check) => {
+  const doneActivities = activities.find((a) => a.index === index);
+
+  doneActivities.completed = check;
+  archiveActivities();
+};
+
+const editActivityDescription = (index, description) => {
+  const descriptionToEdit = activities.find((a) => a.index === index);
+  descriptionToEdit.description = description;
+  archiveActivities();
+};
+
+const repopulateList = () => {
+  const listItems = document.querySelectorAll('.listItems');
+
+  let i = 0;
+  listItems.forEach((listItem) => {
+    listItem.setAttribute('activity', i);
+    i += 1;
+  });
+
+  emptyList();
+
+  listItems.forEach((listItem) => {
+    const description = listItem.getElementsByClassName('description')[0].textContent;
+    const completed = listItem.getElementsByClassName('completed')[0].checked;
+    const index = listItem.getAttribute('activity');
+
+    inputActivity(description, completed, index);
+    archiveActivities();
+  });
+};
+
 export {
-  activities, emptyList, inputActivity, loadActivitiesList, archiveActivities, activityReload,
+  activities,
+  inputActivity,
+  emptyList,
+  archiveActivities,
+  loadActivitiesList,
+  assignIndexToActivity,
+  updateCheckboxStatus,
+  editActivityDescription,
+  repopulateList,
 };
 
 /* eslint-enable import/no-mutable-exports */
