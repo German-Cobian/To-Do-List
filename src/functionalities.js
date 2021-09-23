@@ -3,19 +3,28 @@
 let activities = [
   { description: 'Un-clog the toilet', completed: false, index: 1 },
   { description: 'Complain to the neighbor about his brats', completed: false, index: 3 },
-  { description: 'De-flea the dog', completed: true, index: 3 },
+  { description: 'De-flea the dog', completed: false, index: 3 },
 ];
-
-const emptyList = () => {
-  activities = [];
-};
 
 const inputActivity = (description, completed, index) => {
   activities.push({ description, completed, index });
 };
 
+const emptyList = () => {
+  activities = [];
+};
+
 const archiveActivities = () => {
   localStorage.setItem('activities', JSON.stringify(activities));
+};
+
+const loadActivitiesList = () => {
+  let loadActivities = JSON.parse(localStorage.getItem('activities'));
+  if (loadActivities === undefined) {
+    loadActivities = activities;
+  }
+  activities = loadActivities;
+  return activities;
 };
 
 const activityReload = (activity, check) => {
@@ -26,7 +35,7 @@ const activityReload = (activity, check) => {
 };
 
 export {
-  activities, emptyList, inputActivity, archiveActivities, activityReload,
+  activities, emptyList, inputActivity, loadActivitiesList, archiveActivities, activityReload,
 };
 
 /* eslint-enable import/no-mutable-exports */

@@ -1,7 +1,9 @@
 import './style.css';
-import { activities, activityReload } from './functionalities';
+import { activities, loadActivitiesList, activityReload } from './functionalities';
 
 const activitiesList = () => {
+  loadActivitiesList();
+
   // Section with heading and refresh
   const heading = () => {
     const li = document.createElement('li');
@@ -40,13 +42,14 @@ const activitiesList = () => {
     const div = document.createElement('div');
 
     const input = document.createElement('input');
-    input.classList.add('completed'); // ft-2
+    input.classList.add('completed');
     input.type = 'checkbox';
     input.name = 'completed';
-    input.addEventListener('click', () => activityReload(activity, input.checked)); // ft-2
+    input.checked = activity.completed;
+    input.addEventListener('click', () => activityReload(activity, input.checked));
 
     const p = document.createElement('p');
-    p.classList.add('description'); // ft-2
+    p.classList.add('description');
     p.textContent = activity.description;
 
     div.appendChild(input);
