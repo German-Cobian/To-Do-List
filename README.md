@@ -6,6 +6,9 @@
 
 ![to-do-list](https://user-images.githubusercontent.com/68709712/126507948-20a67a67-d15a-41bc-ab11-f2774647b43a.png)
 
+### Live Demo Link
+https://german-cobian.github.io/To-Do-List/dist
+
 ### Setup and Install
 
 * Open your terminal - Windows: `Win + R`, then type `cmd` | Mac: `Command + space`, then type `Terminal`
