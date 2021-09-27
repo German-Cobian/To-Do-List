@@ -7,7 +7,7 @@
 ![to-do-list](https://user-images.githubusercontent.com/68709712/126507948-20a67a67-d15a-41bc-ab11-f2774647b43a.png)
 
 ### Live Demo Link
-https://german-cobian.github.io/To-Do-List/dist
+https://german-cobian.github.io/To-Do-List/dist/index.html
 
 ### Setup and Install
 
