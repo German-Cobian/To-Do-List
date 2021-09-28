@@ -85,6 +85,10 @@ const activitiesList = () => {
         assignIndexToActivity(input.value);
         ul.appendChild(renderList(activities[activities.length - 1]));
 
+        // Fixes Clear all completed section to the bottom of the pgaes
+        const clear = document.getElementById('clear');
+        ul.appendChild(clear);
+
         input.value = '';
       }
     });
@@ -113,6 +117,10 @@ const activitiesList = () => {
       localStorage.clear();
 
       repopulateList();
+
+      // Fixes Clear all completed section to the bottom of the pgaes
+      const clear = document.getElementById('clear');
+      ul.appendChild(clear);
     });
 
     return li;
