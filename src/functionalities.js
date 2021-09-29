@@ -3,7 +3,8 @@
 let activities = [];
 
 const inputActivity = (description, completed, index) => {
-  activities.push({ description, completed, index: parseInt(index, 10) });
+  activities.push({ description, completed, index });
+  return activities[activities.length - 1];
 };
 
 const emptyList = () => {
