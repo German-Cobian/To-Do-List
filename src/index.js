@@ -13,7 +13,7 @@ const activitiesList = (activity) => {
   const ul = document.querySelector('ul');
 
   // Section that displays activities
- 
+
   const li = document.createElement('li');
   li.classList.add('listItems'); // ft-3
   li.setAttribute('activity', activity.index); // ft-3

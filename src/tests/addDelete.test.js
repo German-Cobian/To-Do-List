@@ -3,7 +3,7 @@
  * @jest-environment jsdom
  */
 
- import {
+import {
   activities, inputActivity, assignIndexToActivity, repopulateList,
 } from './functionalitiesMock';
 import { activitiesList } from '../indexAlt';
@@ -39,18 +39,18 @@ describe('It adds and deletes items from the list', () => {
     const addedActivity2 = inputActivity(activity2.description, activity2.completed, activity2.index);
     ul.innerHTML = '';
     const addActivityToDOM = (activity) => {
-     const listElement = document.createElement('li');
-     listElement.classList.add('listItems');
-     listElement.setAttribute('activity', activity.index);
-     const input = document.createElement('input');
-     input.classList.add('completed');
-     input.setAttribute('checked', (activity.completed ? 'true' : 'false'));
-     const p = document.createElement('p');
-     p.classList.add('description');
-     p.textContent = activity.description;
-     listElement.appendChild(input);
-     listElement.appendChild(p);
-     ul.appendChild(listElement);
+      const listElement = document.createElement('li');
+      listElement.classList.add('listItems');
+      listElement.setAttribute('activity', activity.index);
+      const input = document.createElement('input');
+      input.classList.add('completed');
+      input.setAttribute('checked', (activity.completed ? 'true' : 'false'));
+      const p = document.createElement('p');
+      p.classList.add('description');
+      p.textContent = activity.description;
+      listElement.appendChild(input);
+      listElement.appendChild(p);
+      ul.appendChild(listElement);
     };
     addActivityToDOM(addedActivity1);
     addActivityToDOM(addedActivity2);
@@ -59,5 +59,5 @@ describe('It adds and deletes items from the list', () => {
     repopulateList();
     expect(activities.length).toBe(1);
     expect(activities[0].description).toBe(addedActivity2.description);
-   });
   });
+});
