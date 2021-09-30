@@ -37,6 +37,7 @@ describe('It adds and deletes items from the list', () => {
   test('it adds and deletes an item from the To Do List in the DOM', () => {
     const addedActivity1 = inputActivity(activity1.description, activity1.completed, activity1.index);
     const addedActivity2 = inputActivity(activity2.description, activity2.completed, activity2.index);
+
     ul.innerHTML = '';
     const addActivityToDOM = (activity) => {
       const listElement = document.createElement('li');
@@ -52,8 +53,10 @@ describe('It adds and deletes items from the list', () => {
       listElement.appendChild(p);
       ul.appendChild(listElement);
     };
+
     addActivityToDOM(addedActivity1);
     addActivityToDOM(addedActivity2);
+
     document.body.appendChild(ul);
     ul.removeChild(ul.childNodes[0]);
     repopulateList();

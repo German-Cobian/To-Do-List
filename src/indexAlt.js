@@ -42,6 +42,20 @@ const activitiesList = (activity) => {
   return li;
 };
 
+const clearCompleted = (ul) => {
+  const listItems = [...document.querySelectorAll('.listItems')];
+
+  const incompleteActivities = listItems.filter((listItem) => listItem.getElementsByClassName('completed')[0].checked === false);
+
+  listItems.forEach((listItem) => ul.removeChild(listItem));
+
+  incompleteActivities.forEach((item) => ul.appendChild(item));
+
+  localStorage.clear();
+
+  repopulateList();
+};
+
 const toDoList = () => {
   const ul = document.querySelector('ul');
 
@@ -52,4 +66,4 @@ const ls = new LocalStorageMock();
 
 toDoList(ls.loadActivitiesList(activities));
 
-export { toDoList, activitiesList };
+export { toDoList, activitiesList, clearCompleted };
