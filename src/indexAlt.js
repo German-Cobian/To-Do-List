@@ -61,7 +61,6 @@ const toDoList = () => {
 
   activities.sort((a, b) => ((a.index > b.index) ? 1 : -1));
   activities.forEach((activity) => ul.appendChild(activitiesList(activity)));
-
 };
 const ls = new LocalStorageMock();
 
