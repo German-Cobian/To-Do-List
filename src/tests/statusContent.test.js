@@ -46,5 +46,35 @@ import {
     expect(activities[activities.length - 1].completed).toBe(true);
   });
 
-
+  test('It clears all completed tasks', () => {
+    emptyList();
+    storage.clear();
+    const addedActivity1 = inputActivity(activity1.description, activity1.completed, activity1.index);
+    const addedActivity2 = inputActivity(activity2.description, activity2.completed, activity2.index);
+    ul.innerHTML = '';
+    const addActivityToDOM = (activity) => {
+     const listElement = document.createElement('li');
+     listElement.classList.add('listItems');
+     listElement.setAttribute('activity', activity.index);
+     const input = document.createElement('input');
+     input.classList.add('completed');
+     input.setAttribute('checked', (activity.completed ? 'true' : 'false'));
+     const p = document.createElement('p');
+     p.classList.add('description');
+     p.textContent = activity.description;
+     listElement.appendChild(input);
+     listElement.appendChild(p);
+     ul.appendChild(listElement);
+    };
+    ul.appendChild(activitiesList(activity1));
+    ul.appendChild(activitiesList(activity2));
+    addActivityToDOM(addedActivity1);
+    addActivityToDOM(addedActivity2);
+    document.body.appendChild(ul);
+    const checkboxes = document.getElementsByClassName('completed');
+    checkboxes[0].checked = true;
+    clearCompleted(ul);
+    [...checkboxes].forEach((checkbox) => expect(checkbox.checked).toBe(false));
+    expect([...checkboxes].length).toBe(1);
+   });
 });
