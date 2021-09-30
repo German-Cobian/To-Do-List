@@ -21,16 +21,20 @@ class LocalStorageMock {
     delete this.store[activity];
   }
 }
+
 const storage = new LocalStorageMock();
 
 let activities = [];
+
 const inputActivity = (description, completed, index) => {
   activities.push({ description, completed, index });
   return activities[activities.length - 1];
 };
+
 const emptyList = () => {
   activities = [];
 };
+
 const assignIndexToActivity = (description) => {
   let index = 0;
   if (activities.length > 0) {
@@ -39,16 +43,19 @@ const assignIndexToActivity = (description) => {
   inputActivity(description, false, index);
   storage.archiveActivities();
 };
+
 const updateCheckboxStatus = (index, check) => {
   const doneActivities = activities.find((a) => a.index === index);
   doneActivities.completed = check;
   storage.archiveActivities();
 };
+
 const editActivityDescription = (index, description) => {
   const descriptionToEdit = activities.find((a) => a.index === index);
   descriptionToEdit.description = description;
   storage.archiveActivities();
 };
+
 const repopulateList = () => {
   const listItems = document.querySelectorAll('.listItems');
   let i = 0;
@@ -65,6 +72,7 @@ const repopulateList = () => {
     storage.archiveActivities();
   });
 };
+
 export {
   activities,
   LocalStorageMock,
