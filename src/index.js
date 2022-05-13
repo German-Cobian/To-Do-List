@@ -3,14 +3,17 @@ import {
   activities,
   loadActivitiesList,
   assignIndexToActivity,
-  editActivityDescription,
   updateCheckboxStatus,
+  editActivityDescription,
   repopulateList,
 } from './functionalities';
+import {
+  dragstart, dragover, dragleave, drop, dragend,
+} from './drag-and-drop';
 
 const activitiesList = () => {
   loadActivitiesList();
-  const ul = document.querySelector('ul');
+  const ul = document.querySelector('ul'); // ft-3
 
   // Section with heading and refresh
   const heading = () => {
@@ -34,8 +37,10 @@ const activitiesList = () => {
   // Section that displays activities
   const renderList = (activity) => {
     const li = document.createElement('li');
+    li.classList.add('draggable'); // ft-4
     li.classList.add('listItems'); // ft-3
     li.setAttribute('activity', activity.index); // ft-3
+    li.draggable = true; // ft-4
 
     const div = document.createElement('div');
 
@@ -66,6 +71,17 @@ const activitiesList = () => {
       repopulateList();
     });
 
+    // Event listeners for drag and drop functionality
+    li.addEventListener('dragstart', () => dragstart(li));
+    li.addEventListener('dragover', (e) => dragover(li, e));
+    li.addEventListener('dragleave', () => dragleave(li));
+    li.addEventListener('drop', () => {
+      drop(li);
+    });
+    li.addEventListener('dragend', () => {
+      dragend(li);
+    });
+
     li.appendChild(i);
 
     return li;
@@ -85,7 +101,7 @@ const activitiesList = () => {
         assignIndexToActivity(input.value);
         ul.appendChild(renderList(activities[activities.length - 1]));
 
-        // Fixes Clear all completed section to the bottom of the pgaes
+        // Fixes Clear all completed section to the bottom of the pages
         const clear = document.getElementById('clear');
         ul.appendChild(clear);
 
@@ -106,11 +122,11 @@ const activitiesList = () => {
     li.id = 'clear';
 
     li.addEventListener('click', () => {
-      const listItems = [...document.querySelectorAll('.listItems')];
+      const draggables = [...document.querySelectorAll('.draggable')];
 
-      const incompleteActivities = listItems.filter((listItem) => listItem.getElementsByClassName('completed')[0].checked === false);
+      const incompleteActivities = draggables.filter((draggable) => draggable.getElementsByClassName('completed')[0].checked === false);
 
-      listItems.forEach((listItem) => ul.removeChild(listItem));
+      draggables.forEach((draggable) => ul.removeChild(draggable)); 
 
       incompleteActivities.forEach((item) => ul.appendChild(item));
 
@@ -118,7 +134,7 @@ const activitiesList = () => {
 
       repopulateList();
 
-      // Fixes Clear all completed section to the bottom of the pgaes
+      // Fixes Clear all completed section to the bottom of the pages
       const clear = document.getElementById('clear');
       ul.appendChild(clear);
     });

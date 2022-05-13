@@ -71,7 +71,6 @@ const repopulateList = () => {
 export {
   activities,
   inputActivity,
-  emptyList,
   archiveActivities,
   loadActivitiesList,
   assignIndexToActivity,
