@@ -120,21 +120,17 @@ const toDoList = () => {
   // Section to clear all completed activies
   const clearCompleted = () => {
     const li = document.createElement('li');
-
     li.textContent = 'Clear all completed';
     li.id = 'clear';
 
     li.addEventListener('click', () => {
       const listItems = [...document.querySelectorAll('.listItems')];
-      
       const incompleteActivities = listItems.filter((listItem) => listItem.getElementsByClassName('completed')[0].checked === false);
 
       listItems.forEach((listItem) => ul.removeChild(listItem));
-
       incompleteActivities.forEach((item) => ul.appendChild(item));
 
       localStorage.clear();
-
       repopulateList();
 
       // Fix 'Clear all completed' section to bottom of the app

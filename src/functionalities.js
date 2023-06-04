@@ -49,21 +49,19 @@ const editActivityDescription = (index, description) => {
 };
 
 const repopulateList = () => {
+  emptyList();
   const listItems = document.querySelectorAll('.listItems');
 
   let i = 0;
   listItems.forEach((listItem) => {
     listItem.setAttribute('activity', i);
     i += 1;
-  });
 
-  emptyList();
-
-  listItems.forEach((listItem) => {
+    const index = listItem.getAttribute('activity');
     const description = listItem.getElementsByClassName('description')[0].textContent;
     const completed = listItem.getElementsByClassName('completed')[0].checked;
-    const index = listItem.getAttribute('activity');
     console.log(description, completed, index)
+
     inputActivity(description, completed, index);
     archiveActivities();
   });
