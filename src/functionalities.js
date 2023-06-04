@@ -63,7 +63,7 @@ const repopulateList = () => {
     const description = listItem.getElementsByClassName('description')[0].textContent;
     const completed = listItem.getElementsByClassName('completed')[0].checked;
     const index = listItem.getAttribute('activity');
-
+    console.log(description, completed, index)
     inputActivity(description, completed, index);
     archiveActivities();
   });

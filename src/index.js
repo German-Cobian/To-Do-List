@@ -8,6 +8,10 @@ import {
   repopulateList,
 } from './functionalities';
 
+import {
+  dragstart, dragover, dragleave, drop, dragend,
+} from './drag-and-drop';
+
 const activitiesList = (activity) => {
   loadActivitiesList();
   const ul = document.querySelector('ul');
@@ -16,6 +20,7 @@ const activitiesList = (activity) => {
 
   const li = document.createElement('li');
   li.classList.add('listItems'); // ft-3
+  li.draggable = true; // ft drag-and-drop
   li.setAttribute('activity', activity.index); // ft-3
 
   const div = document.createElement('div');
@@ -48,6 +53,17 @@ const activitiesList = (activity) => {
   });
 
   li.appendChild(i);
+
+   // Event listeners for drag and drop functionality
+  li.addEventListener('dragstart', () => dragstart(li));
+  li.addEventListener('dragover', (e) => dragover(li, e));
+  li.addEventListener('dragleave', () => dragleave(li));
+  li.addEventListener('drop', () => {
+    drop(li);
+  });
+  li.addEventListener('dragend', () => {
+    dragend(li);
+  });
 
   return li;
 };
@@ -110,7 +126,7 @@ const toDoList = () => {
 
     li.addEventListener('click', () => {
       const listItems = [...document.querySelectorAll('.listItems')];
-
+      
       const incompleteActivities = listItems.filter((listItem) => listItem.getElementsByClassName('completed')[0].checked === false);
 
       listItems.forEach((listItem) => ul.removeChild(listItem));
